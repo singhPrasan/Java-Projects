@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Green Screen</title>
+    <link rel="stylesheet" type="text/css" href="style/stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
+</head>
+<body>
+    <h1>Green Screen </h1>
+    <canvas id="can1"></canvas>
+    <canvas id="can2"></canvas>
+    <div>
+      Foreground Image:
+      <input type="file" id="f1" multiple="false" accept="image/*" onchange="loadForegroundImage()">
+      Background Image:
+      <input type="file" id="f2" multiple="false" accept="image/*" onchange="loadBackgroundImage()"><br>
+      <input type="button" id="b3" value="Apply Background" onclick="applyBackground()">
+      <input type="button" id="b4" value="Clear Canvases" onclick="clearCanvas()">
+      <input type="button" id="b2" value="MakeGray" onclick="makeGray()">
+    </div>
+
+    <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+    <script type = "text/javascript" src="scripts/gray.js"></script>
+    <script type = "text/javascript" src="scripts/greenScreen.js"></script>
+</body>
+</html>
