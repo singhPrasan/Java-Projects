@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filters</title>
+    <link rel="stylesheet" type="text/css" href="style/stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
+</head>
+<body>
+    <h1>Filters</h1>
+    <canvas id="can1"></canvas>
+    <h3>Upload Image</h3>
+    <div>
+      <input type="file" multiple="false" id="f1" accept="image/*" onchange="upload()">
+    </div>
+
+    <h3>Select a Filter</h3>
+    <div>
+      <input type="button" id="b1" value="Gray Scale" onclick="doGray()">
+      <input type="button" id="b2" value="secondfilter" onclick="secondfilter()">
+      <input type="button" id="b3" value="thirdfilter" onclick="thirdfilter()">
+    </div>
+
+    <h3>Clear Canvas</h3>
+    <div>
+      <input type="button" id="b4" value="Reset" onclick="reset()">
+    </div>
+    <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+    <script type="text/javascript" src="scripts/filters.js"></script>
+</body>
+</html>

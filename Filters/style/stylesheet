@@ -1,0 +1,13 @@
+canvas{
+    width : 400pt;
+    height : 400pt;
+    border : 5px solid black;
+}
+
+h1{
+    font-family : 'Ubuntu';
+}
+
+input{
+    margin : 2px;
+}
