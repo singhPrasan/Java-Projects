@@ -1,7 +1,7 @@
 var origImg = null;
 var imgForGray = null;
 var imgForRed = null;
-var imgForRainbow = null;
+var imgForNegative = null;
 var canvas = document.getElementById('can1');
 
 function upload(){
@@ -13,8 +13,9 @@ function upload(){
     //make copies of the original image
     imgForGray = new SimpleImage(file);
     imgForRed = new SimpleImage(file);
-    imgForRainbow = new SimpleImage(file);
+    imgForNegative = new SimpleImage(file);
 }
+
 
 function doGray(){
     //Check whether the imgForGray has loaded successfully or not
@@ -28,7 +29,6 @@ function doGray(){
         alert("Image not loaded successfully! Try uploading again.");
     }
 }
-
 function applyGray(){
     //For every pixel of the image
     for(pixel of imgForGray.values()){
@@ -41,13 +41,46 @@ function applyGray(){
     }
 }
 
-function secondfilter(){
-    alert("second filter applied");
+
+function doRed(){
+    if(isImageLoaded(imgForRed) === true){
+        applyRed();
+        imgForRed.drawTo(canvas);
+    }else{
+        alert("Image not loaded successfully! Try uploading again.");
+    }
 }
 
-function thirdfilter(){
-    alert("third filter applied");
+function applyRed(){
+    for(pixel of imgForRed.values()){
+        var avg = (pixel.getRed() + pixel.getGreen() + pixel.getGreen())/3;
+        if( avg < 128){
+            pixel.setRed(2*avg);
+            pixel.setGreen(0);
+            pixel.setBlue(0);
+        }else{
+            pixel.setRed(255);
+            pixel.setGreen(2*avg - 255);
+            pixel.setBlue(2*avg - 255);
+        }
+    }
 }
+function doNegative(){
+    if(isImageLoaded(imgForNegative) === true){
+        applyNegative();
+        imgForNegative.drawTo(canvas);
+    }else{
+        alert("Image not loaded successfully! Try uploading again.");
+    }
+}
+function applyNegative(){
+    for(pixel of imgForNegative.values()){
+        pixel.setRed(255 - pixel.getRed());
+        pixel.setGreen(255 - pixel.getGreen());
+        pixel.setBlue(255 - pixel.getBlue());
+    }
+}
+
 
 function reset(){
     if(isImageLoaded(origImg) === true ){
@@ -58,6 +91,7 @@ function reset(){
     }
 }
 
+
 function isImageLoaded(img) {
     if(img == null || !img.complete()){
         return false;
@@ -65,6 +99,7 @@ function isImageLoaded(img) {
         return true;
     }
 }
+
 
 function clearCanvas(){
     var ctx = canvas.getContext('2d');
