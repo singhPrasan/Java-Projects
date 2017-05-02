@@ -3,6 +3,8 @@ var imgForGray = null;
 var imgForRed = null;
 var imgForNegative = null;
 var imgForRainbow = null;
+var imgForBlur = null;
+
 var canvas = document.getElementById('can1');
 
 function upload(){
@@ -16,6 +18,7 @@ function upload(){
     imgForRed = new SimpleImage(file);
     imgForNegative = new SimpleImage(file);
     imgForRainbow = new SimpleImage(file);
+    imgForBlur = new SimpleImage(file);
 }
 
 
@@ -175,6 +178,65 @@ function applyRainbow(){
     }
 }
 
+
+function doBlur(){
+    if(isImageLoaded(imgForBlur) === true){
+        applyBlur();
+        imgForBlur.drawTo(canvas);
+    }else{
+        alert("Image not loaded successfully! Try uploading again.");   
+    }
+}
+function applyBlur(){
+    for(pixel of imgForBlur.values()){
+        var random = Math.random();
+        if(random >= 0.5){
+            var pix = findNearbyPixel(pixel);
+            pixel.setBlue(pix.getBlue());
+            pixel.setGreen(pix.getGreen());
+            pixel.setRed(pix.getRed());
+        }else{
+            continue;
+        }
+
+    }
+}
+function findNearbyPixel(pixel){
+    var origX = pixel.getX();
+    var origY = pixel.getY();
+    var newX; 
+    var newY;
+    var pixDistance = Math.floor(Math.random()*10)+1;
+
+    //Find X coordinate of the new pixel
+    if ( origX <= 10 ){
+        //left pixel edge case
+        newX = origX + pixDistance;
+    }else if( origX >= imgForBlur.getWidth()-10){
+        //right pixel edge case
+        newX = origX - pixDistance;
+    }else{
+        //Normal pixel
+        var ran = Math.random();
+        newX = (ran < 0.5) ? (origX-pixDistance) : (origX+pixDistance);
+    }
+
+    //Find Y coordinate of the new pixel
+    if ( origY <= 10 ){
+        //top pixel edge case
+        newY = origY + pixDistance;
+    }else if( origY >= imgForBlur.getHeight()-10){
+        //bottom pixel edge case
+        newY = origY - pixDistance;
+    }else{
+        //Normal pixel
+        var ran = Math.random();
+        newY = (ran < 0.5) ? (origY-pixDistance) : (origY+pixDistance);
+    } 
+
+    //Return pixel at the new X,Y coordinates
+    return imgForBlur.getPixel(newX, newY);
+}
 
 function reset(){
     if(isImageLoaded(origImg) === true ){
