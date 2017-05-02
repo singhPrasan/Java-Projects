@@ -2,6 +2,7 @@ var origImg = null;
 var imgForGray = null;
 var imgForRed = null;
 var imgForNegative = null;
+var imgForRainbow = null;
 var canvas = document.getElementById('can1');
 
 function upload(){
@@ -14,6 +15,7 @@ function upload(){
     imgForGray = new SimpleImage(file);
     imgForRed = new SimpleImage(file);
     imgForNegative = new SimpleImage(file);
+    imgForRainbow = new SimpleImage(file);
 }
 
 
@@ -78,6 +80,98 @@ function applyNegative(){
         pixel.setRed(255 - pixel.getRed());
         pixel.setGreen(255 - pixel.getGreen());
         pixel.setBlue(255 - pixel.getBlue());
+    }
+}
+
+
+function doRainbow(){
+    if(isImageLoaded(imgForRainbow) === true){
+        applyRainbow();
+        imgForRainbow.drawTo(canvas);
+    }else{
+        alert("Image not loaded successfully! Try uploading again.");   
+    }
+}
+function applyRainbow(){
+    for(pixel of imgForRainbow.values()){
+        var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue())/3;
+        var imgHeight = imgForRainbow.getHeight();
+        var Y = pixel.getY();
+        if(avg < 128){
+            if( Y < imgHeight/7 ){
+                //Set Red Filter
+                pixel.setRed(2*avg);
+                pixel.setGreen(0);
+                pixel.setBlue(0);
+            }else if( Y >= imgHeight/7 && Y < 2*imgHeight/7){
+                //Set Orange Filter
+                pixel.setRed(2*avg);
+                pixel.setGreen(0.8*avg);
+                pixel.setBlue(0);
+            }else if( Y >= 2*imgHeight/7 && Y < 3*imgHeight/7){
+                //Set Yellow Filter
+                pixel.setRed(2*avg);
+                pixel.setGreen(2*avg);
+                pixel.setBlue(0);
+            }else if( Y >= 3*imgHeight/7 && Y < 4*imgHeight/7){
+                //Set Green Filter
+                pixel.setRed(0);
+                pixel.setGreen(2*avg);
+                pixel.setBlue(0);
+            }else if( Y >= 4*imgHeight/7 && Y < 5*imgHeight/7){
+                //Set Blue Filter
+                pixel.setRed(0);
+                pixel.setGreen(0);
+                pixel.setBlue(2*avg);
+            }else if( Y >= 5*imgHeight/7 && Y < 6*imgHeight/7){
+                //Set Indigo Filter
+                pixel.setRed(0.8*avg);
+                pixel.setGreen(0);
+                pixel.setBlue(2*avg);
+            }else{
+                //Set Violet Filter
+                pixel.setRed(1.6*avg);
+                pixel.setGreen(0);
+                pixel.setBlue(1.6*avg);
+            }
+        }else{
+            if( Y < imgHeight/7 ){
+                //Set Red Filter
+                pixel.setRed(255);
+                pixel.setGreen(2*avg- 255);
+                pixel.setBlue(2*avg- 255);
+            }else if( Y >= imgHeight/7 && Y < 2*imgHeight/7){
+                //Set Orange Filter
+                pixel.setRed(255);
+                pixel.setGreen(1.2*avg-51);
+                pixel.setBlue(2*avg-255);
+            }else if( Y >= 2*imgHeight/7 && Y < 3*imgHeight/7){
+                //Set Yellow Filter
+                pixel.setRed(255);
+                pixel.setGreen(255);
+                pixel.setBlue(2*avg-255);
+            }else if( Y >= 3*imgHeight/7 && Y < 4*imgHeight/7){
+                //Set Green Filter
+                pixel.setRed(2*avg-255);
+                pixel.setGreen(255);
+                pixel.setBlue(2*avg-255);
+            }else if( Y >= 4*imgHeight/7 && Y < 5*imgHeight/7){
+                //Set Blue Filter
+                pixel.setRed(2*avg-255);
+                pixel.setGreen(2*avg-255);
+                pixel.setBlue(255);
+            }else if( Y >= 5*imgHeight/7 && Y < 6*imgHeight/7){
+                //Set Indigo Filter
+                pixel.setRed(1.2*avg-51);
+                pixel.setGreen(2*avg-255);
+                pixel.setBlue(255);
+            }else{
+                //Set Violet Filter
+                pixel.setRed(0.4*avg+153);
+                pixel.setGreen(2*avg-255);
+                pixel.setBlue(0.4*avg+153);
+            }
+        }
     }
 }
 
