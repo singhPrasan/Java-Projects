@@ -22,11 +22,13 @@ public class OperationsOnCSV {
 	
 	//List all the countries which export both the mentioned items
 	public void listExportersTwoProducts(CSVParser parser, String exportItem1, String exportItem2){
+		System.out.println("Countries which export both "+exportItem1+" and "+exportItem2+" are :");
 		for(CSVRecord record : parser){
 			String exportedItems = record.get("Exports");
 			if(exportedItems.contains(exportItem1) && exportedItems.contains(exportItem2))
-				System.out.println(record.get("Country"));
+				System.out.print(record.get("Country")+" ");
 		}
+		System.out.println();
 	}
 	
 	//To count the number of countries which export a particular item
@@ -58,8 +60,8 @@ public class OperationsOnCSV {
 		CSVParser csvp = fr.getCSVParser();
 		String countryInfo = oocsv.countryInfo(csvp, "Nauru");
 		System.out.println(countryInfo);
-		oocsv.listExportersTwoProducts(fr.getCSVParser(), "gold", "diamond");
-		System.out.println(oocsv.numberOfExporters(fr.getCSVParser(), "gold"));
+		oocsv.listExportersTwoProducts(fr.getCSVParser(), "cotton", "flowers");
+		System.out.println("Number of countries exporting this good :"+oocsv.numberOfExporters(fr.getCSVParser(), "cocoa"));
 		oocsv.bigExporters(fr.getCSVParser(), "$999,999,999,999");
 	}
 }
