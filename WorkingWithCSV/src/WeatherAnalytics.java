@@ -117,9 +117,9 @@ public class WeatherAnalytics {
 	//Returns the average temperature only when humidity is higher than a given value on the selected day
 	public double averageTemperatureWithHighHumidityInFile(CSVParser parser, int value){
 		double sum = 0;
-		int count = 0;
+		double count = 0;
 		for(CSVRecord current : parser){
-			int currentHum = (current.get("Humidity").equals("N/A")? Integer.MAX_VALUE : Integer.parseInt(current.get("Humidity")));	
+			int currentHum = (current.get("Humidity").equals("N/A")? Integer.MIN_VALUE : Integer.parseInt(current.get("Humidity")));	
 			if(currentHum >= value){
 				sum += Double.parseDouble(current.get("TemperatureF"));
 				count++;
@@ -150,7 +150,8 @@ public class WeatherAnalytics {
 		System.out.println("Average temperature in file :"+wa.averageTemperatureInFile(parser));
 		
 		int humidity = 80;
-		double avgTemp = wa.averageTemperatureWithHighHumidityInFile(parser, humidity);
+		CSVParser par = fr.getCSVParser();
+		double avgTemp = wa.averageTemperatureWithHighHumidityInFile(par, humidity);
 		if( avgTemp == -1)
 			System.out.println("No temperatures with that humidity");
 		else
