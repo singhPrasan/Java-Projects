@@ -1,23 +1,21 @@
-import edu.duke.FileResource;
-
 /*
- * Class to break the code encrypted via Caesar Cipher 
+ * Class to break the code encrypted via Caesar Cipher using only one key
+ * This algorithm assumes that the most frequently occuring character in a message is the letter 'E'
+ * Will not work if frequency of any other character is greater than frequency of 'e' 
  */
 
-public class BreakCaesar {
+
+import edu.duke.FileResource;
+
+public class TestCaesarCipher {
 	
 	//Returns the decrypted message
 	public String decrypt(String encrypted){
-		//Create an object of CaesarCipher class
-		CaesarCipher cc = new CaesarCipher();
-		
 		//Count the frequency of each letter occurring in the encrypted text
 		int[] freqs = countLetters(encrypted);
-		
 		//Find the most commonly occurring alphabet in the encrypted text and return its index
 		//This is the position where 'e' was shifted to as 'e' is the most commonly occurring alphabet in the English language
 		int maxIndex = getMaxIndex(freqs);
-		
 		//Get the decryption key by subtracting maxIndex by 4 (index of letter 'e')
 		int dKey = -1;
 		if(maxIndex < 4)
@@ -25,7 +23,8 @@ public class BreakCaesar {
 		else
 			dKey = maxIndex - 4 ;
 		//Call the encrypt function in the CaesarCipher class with the decryption key to return the original message
-		return cc.encrypt(encrypted, 26 - dKey);
+		CaesarCipher cc = new CaesarCipher(26 - dKey);
+		return cc.encrypt(encrypted);
 	}
 	
 	//Returns the count array consisting of number of times each letter occurs in the encrypted 
@@ -53,9 +52,16 @@ public class BreakCaesar {
 	}
 	
 	
-	//Test client
+	//Test Client
 	public static void main(String[] args) {
-		BreakCaesar bc = new BreakCaesar();
-		System.out.println(bc.decrypt("NBYLY ULY ZCPY NLYYM, UHX NBLYY ZFIQYLM CH NBY GYUXIQ IZ XLYUGM CH NYRUM."));		
+		TestCaesarCipher tcc = new TestCaesarCipher();
+		FileResource fr = new FileResource();
+		String fileContent = fr.asString();
+		CaesarCipher cc = new CaesarCipher(15);
+		String encrypted = cc.encrypt(fileContent);
+		System.out.println("Encrypted message using one key:"+encrypted);
+		System.out.println("Decrypted message using one key:"+cc.decrypt(encrypted));
+		System.out.println("Decrypted message using auto generated key:"+tcc.decrypt(encrypted));
+		
 	}
 }

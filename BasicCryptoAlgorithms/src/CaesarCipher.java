@@ -1,52 +1,31 @@
 /*
- * To implement the Caesar Cipher
+ * To implement the Caesar Cipher using one key encryption
  */
 public class CaesarCipher {
 	
+	private String alphabet;
+	private String shiftedAlphabet;
+	private int mainKey;
+	
+	public CaesarCipher(int key){
+		alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
+		mainKey = key;
+	}
 	
 	//To encrypt the message using one key
-	public String encrypt(String input, int key){
+	public String encrypt(String input){
 		StringBuilder encrypted = new StringBuilder(input);
-		
-		//Set up the shifted alphabet
-		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		String shiftedAlphabet = generateShifted(alphabet, key);
-		
+				
 		//Encrypt/Decrypt the input 
 		for(int i = 0; i<input.length(); i++){
-				encrypted = encrypt(encrypted, i, shiftedAlphabet, key);
+				encrypted = encryptChar(encrypted, i, shiftedAlphabet);
 		}
 		return encrypted.toString();
-	}
-	
-	
-	//Encryptes the message in accordance to two separate keys
-	public String encryptTwoKeys(String input, int key1, int key2){
-		StringBuilder encrypted = new StringBuilder(input);
-		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		String shiftedAlphabet1 = generateShifted(alphabet, key1);
-		String shiftedAlphabet2 = generateShifted(alphabet, key2);
-		
-		for(int i = 0; i<input.length(); i++){
-			if(i % 2 == 0){
-				encrypted = encrypt(encrypted, i, shiftedAlphabet1, key1);
-			}else{
-				encrypted = encrypt(encrypted, i, shiftedAlphabet2, key2);
-			}
-		}
-		return encrypted.toString();
-	}
-	
-	
-	//To shift the alphabet according to the key specified
-	private String generateShifted(String alphabet, int key){
-		String shiftedAlphabet = alphabet.substring(key);
-		shiftedAlphabet = shiftedAlphabet + alphabet.substring(0, key);
-		return shiftedAlphabet;
 	}
 	
 	//Encryptes one character according to shiftedAplhabet and key
-	private StringBuilder encrypt(StringBuilder encrypted, int i, String shiftedAlphabet, int key){
+	public StringBuilder encryptChar(StringBuilder encrypted, int i, String shiftedAlphabet){
 		boolean isLowerCase = false;
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		//Build the encryption
@@ -79,16 +58,11 @@ public class CaesarCipher {
 	}
 	
 	
-	
-	//Test client
-	public static void main(String[] args) {
-		CaesarCipher cc = new CaesarCipher();
-	//	String message = "At noon be in the conference room with your hat on for a surprise party. YELL LOUD!";
-		String message = "THERE ARE FIVE TREES, AND THREE FLOWERS IN THE MEADOW OF DREAMS IN TEXAS.";
-		int key = 20;
-		String encrypted = cc.encrypt(message, key);
-		System.out.println("Encrypted message using one key:"+encrypted);
-		System.out.println("Decrypted message using one key:"+cc.encrypt(encrypted, 26-key));
-		System.out.println("Encrypted message using two keys:"+cc.encryptTwoKeys(message, 8, 21));
+	//Returns the decrypted message
+	public String decrypt(String encrypted){
+		//Create an object of CaesarCipher class
+		CaesarCipher cc = new CaesarCipher(26-mainKey);
+		//Call the encrypt function in the CaesarCipher class with the decryption key to return the original message
+		return cc.encrypt(encrypted);
 	}
 }
