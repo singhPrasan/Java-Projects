@@ -74,7 +74,7 @@ public class VigenereBreaker {
     //Also, we have been provided that the keyLength will be between 1 to 100
     public String breakForLanguage(String encrypted, HashSet<String> dictionary){
     	int maxRealWords = 0;
-    	int keyLengthUsed = 0;
+ //   	int keyLengthUsed = 0;
     	String bestDecryption = "";
     	for(int i = 1; i<=100; i++){
     		char mostCommonChar = mostCommonCharIn(dictionary);
@@ -85,7 +85,7 @@ public class VigenereBreaker {
     		if(currCount>maxRealWords){
     			maxRealWords = currCount;
     			bestDecryption = currDecrpt;
-    			keyLengthUsed = obtainedKey.length;
+    	//		keyLengthUsed = obtainedKey.length;
     			System.out.print(".");
     		}
     	}
@@ -95,6 +95,7 @@ public class VigenereBreaker {
     }
     
     
+    //Finds the encrypted language and original message from various languages
     public void breakForAllLangs(String encrypted, HashMap<String, HashSet<String>> languages){
     	int maxRealWords = 0;
     	String bestDecryption = "";
@@ -116,6 +117,7 @@ public class VigenereBreaker {
     }
     
     
+    //Maps and returns a language to its dictionary of words
     public HashMap<String, HashSet<String>> langDictionary(DirectoryResource dr){
     	HashMap<String, HashSet<String>> map = new HashMap<>();
     	System.out.print("Scanning dictionaries");
