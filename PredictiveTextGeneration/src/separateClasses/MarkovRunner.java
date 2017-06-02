@@ -1,3 +1,4 @@
+package separateClasses;
 
 /**
  * Used to test Markow Models

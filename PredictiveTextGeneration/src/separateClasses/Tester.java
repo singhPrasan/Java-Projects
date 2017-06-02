@@ -1,3 +1,4 @@
+package separateClasses;
 /*
  * Tester class to test all the Markov Order models
  * 

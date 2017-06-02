@@ -1,18 +1,23 @@
+package refinedOOPUsage;
 /*
- * Generates random text based on myText training text using Markov Order Four Model
+ * Optimization of MarkovModel
+ * Generates random text based on myText training text using Markov Order N Model
  * 
  * @author - Prasandeep Singh
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
-public class MarkovFour {
-	private Random myRandom;
-	private String myText;
+public class EfficientMarkovModel extends AbstractMarkovModel{
+	private int order;
+	private HashMap<String, ArrayList<String>> map ;
 	
-	public MarkovFour(){
+	public EfficientMarkovModel(int numChars){
 		myRandom = new Random();
+		order = numChars;
+		map = new HashMap<>();
 	}
 	
 	/*
@@ -37,11 +42,12 @@ public class MarkovFour {
 		StringBuilder sb = new StringBuilder();
 		//Generating index from 0 to length - 1 because the last index will not have any follow character
 		//Hence not generating the last index to address this point
-		int index = myRandom.nextInt(myText.length()-4);
-		String key = myText.substring(index, index+4);
+		int index = myRandom.nextInt(myText.length()-order);
+		String key = myText.substring(index, index+order);
 		sb.append(key);
-		for(int i = 0; i < numChars-4; i++){
-			ArrayList<String> follows = getFollows(key);
+		for(int i = 0; i < numChars-order; i++){
+			buildMap(key);
+			ArrayList<String> follows = map.get(key);
 			if(follows.size()==0)
 				break;
 			index = myRandom.nextInt(follows.size());
@@ -55,17 +61,23 @@ public class MarkovFour {
 		return sb.toString();
 	}
 	
-	//Returns a list of strings that follow the provided key
-	public ArrayList<String> getFollows(String key){
-		ArrayList<String> follows = new ArrayList<>();
-		for(int i = 0; i<myText.length()-1; ){
-			int start = myText.indexOf(key, i);
-			if(start == -1 || start==myText.length()-key.length())
-				break;
-			int index = start+key.length();
-			follows.add(myText.substring(index, index+1));
-			i = index;
+	private void buildMap(String key){
+		if(!map.containsKey(key)){
+			ArrayList<String> follows = new ArrayList<>();
+			map.put(key, follows);
+		}else{
+			ArrayList<String> follows = getFollows(key);
+			map.put(key, follows);
 		}
-		return follows;
 	}
-}
+	
+	protected ArrayList<String> getFollows(String key){
+		return map.get(key);
+	}
+	
+	public String toString(){
+		
+		return "EfficientMarkovModel class of order : "+order;
+	}
+
+}	

@@ -1,3 +1,4 @@
+package separateClasses;
 /*
  * Generates random text based on myText training text using Markov Order Zero Model
  * 
