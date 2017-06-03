@@ -23,14 +23,14 @@ public class MarkovModel extends AbstractMarkovModel{
 	 * (when you are looking for an error in a program you need to be able to reproduce the problem and study it, 
 	 * a non-deterministic program would be much harder to debug because every run would be different).
 	 */
-	public void setRandom(int seed){
-		myRandom = new Random(seed);
-	}
+//	public void setRandom(int seed){
+//		myRandom = new Random(seed);
+//	}
 	
-	//Sets the training text to the provided string
-	public void setTraining(String s){
-		myText = s.trim();
-	}
+//	//Sets the training text to the provided string
+//	public void setTraining(String s){
+//		myText = s.trim();
+//	}
 	
 	//Returns a string based on random characters selected from myText
 	public String getRandomText(int numChars){

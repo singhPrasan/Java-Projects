@@ -14,9 +14,9 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
 	private int order;
 	private HashMap<String, ArrayList<String>> map ;
 	
-	public EfficientMarkovModel(int numChars){
+	public EfficientMarkovModel(int orderNum){
 		myRandom = new Random();
-		order = numChars;
+		order = orderNum;
 		map = new HashMap<>();
 	}
 	
@@ -35,6 +35,7 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
 	//Sets the training text to the provided string
 	public void setTraining(String s){
 		myText = s.trim();
+		buildMap(order);
 	}
 	
 	//Returns a string based on random characters selected from myText
@@ -46,8 +47,7 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
 		String key = myText.substring(index, index+order);
 		sb.append(key);
 		for(int i = 0; i < numChars-order; i++){
-			buildMap(key);
-			ArrayList<String> follows = map.get(key);
+			ArrayList<String> follows = getFollows(key);
 			if(follows.size()==0)
 				break;
 			index = myRandom.nextInt(follows.size());
@@ -61,14 +61,48 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
 		return sb.toString();
 	}
 	
-	private void buildMap(String key){
-		if(!map.containsKey(key)){
-			ArrayList<String> follows = new ArrayList<>();
-			map.put(key, follows);
-		}else{
-			ArrayList<String> follows = getFollows(key);
+	
+	//Builds the hashmap of every possible key mapped to a list of characters followed 
+	//Traverses through the input text once
+	private void buildMap(int order){
+		ArrayList<String> follows;
+		for(int i=0; i<myText.length(); i++){
+			String key = myText.substring(i, i+order);
+			if(!map.containsKey(key)){
+				follows = new ArrayList<>();
+				map.put(key, follows);
+			}
+			else
+				follows = map.get(key);
+			int start = myText.indexOf(key, i);
+			if(start == -1 || start == (myText.length() - key.length()))
+				break;
+			int index = start + key.length();
+			follows.add(myText.substring(index, index+1));
 			map.put(key, follows);
 		}
+		printHashMapInfo();
+	}
+	
+	
+//	To test the hashmap and print its contents
+	private void printHashMapInfo(){
+		System.out.println("Number of keys is map :"+map.keySet().size());
+		int maxFollows = 0;
+		for(String key : map.keySet()){
+			int listSize = map.get(key).size();
+			if(listSize > maxFollows)
+				maxFollows = listSize;
+		}
+		System.out.println("Maximum number of keys following a key : "+maxFollows);
+//		System.out.println("Keys that have the largest arrayList : " );
+//		for(String key : map.keySet()){
+//			int listSize = map.get(key).size();
+//			if(listSize == maxFollows)
+//				System.out.print(key+", ");
+//			System.out.println(key+"\t"+map.get(key));
+//		}
+		
 	}
 	
 	protected ArrayList<String> getFollows(String key){
