@@ -25,7 +25,7 @@ public class Tester {
 		FileResource fr = new FileResource();
 		String trainingText = fr.asString();
 		mOne.setTraining(trainingText);
-		ArrayList<String> follows = mOne.getFollows("th");
+		ArrayList<String> follows = mOne.getFollows("he");
 		System.out.println(follows);
 		System.out.println(follows.size());
 	}

@@ -1,5 +1,7 @@
 package predictingWords;
 
+import java.util.Arrays;
+
 public class WordGram {
     private String[] myWords;
     private int myHash;
@@ -7,6 +9,7 @@ public class WordGram {
     public WordGram(String[] source, int start, int size) {
         myWords = new String[size];
         System.arraycopy(source, start, myWords, 0, size);
+        myHash = this.hashCode();
     }
 
     public String wordAt(int index) {
@@ -50,6 +53,14 @@ public class WordGram {
         return out;
     }
     
+    public int hashCode(){
+    	String wordGram = toString();
+    	return wordGram.hashCode();
+    }
+    
+    public int getMyHash(){
+    	return myHash;
+    }
     private void testShiftAdd(){
     	WordGram shifted = shiftAdd("yes");
     	System.out.println(shifted);

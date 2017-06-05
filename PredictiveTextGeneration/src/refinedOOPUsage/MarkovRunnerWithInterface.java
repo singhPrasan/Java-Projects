@@ -35,11 +35,11 @@ public class MarkovRunnerWithInterface {
 //        MarkovModel mThree = new MarkovModel(3);
 //        runModel(mThree, st, size,seed);
 //        
-        MarkovFour mFour = new MarkovFour();
-        runModel(mFour, st, size, seed);
+//        MarkovFour mFour = new MarkovFour();
+//       runModel(mFour, st, size, seed);
         
-//        EfficientMarkovModel emm = new EfficientMarkovModel(5);
-//        runModel(emm, st, size, 615);
+        EfficientMarkovModel emm = new EfficientMarkovModel(5);
+        runModel(emm, st, size, 531);
 
     }
 

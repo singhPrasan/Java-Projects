@@ -1,31 +1,81 @@
 package predictingWords;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
-public class MarkovWord implements IMarkovModel{
+public class EfficientMarkovWord implements IMarkovModel{
 
 	private String[] myText;
 	private Random myRandom;
 	private int myOrder;
+	private HashMap<WordGram, ArrayList<String>> map;
 	
-    public MarkovWord(int order) {
+    public EfficientMarkovWord(int order) {
         myRandom = new Random();
         myOrder = order;
+        map = new HashMap<>();
     }
     
     public void setRandom(int seed) {
         myRandom = new Random(seed);
     }
     
+	public String toString(){
+		return "Markov Model of order : "+myOrder;
+	}
+	
     public void setTraining(String text){
 		myText = text.split("\\s+");
+		buildMap();
 	}
 	
-	public String toString(){
-		return "MarkovModel of order : "+myOrder;
+	//Builds the hashmap of every possible key mapped to a list of characters followed 
+	//Traverses through the input text once
+	private void buildMap(){
+		ArrayList<String> follows;
+		for(int i=0; i<myText.length; i++){
+			String[] keyGram = new String[myOrder];
+			for(int j = i; j-i<keyGram.length; j++)
+				keyGram[j-i] = myText[j];
+			WordGram currWordGram = new WordGram(keyGram, 0, myOrder);
+			if(!map.containsKey(currWordGram)){
+				follows = new ArrayList<>();
+				map.put(currWordGram, follows);
+			}
+			else
+				follows = map.get(currWordGram);
+			int start = indexOf(myText, currWordGram, i);
+			if(start == -1 || start == (myText.length - currWordGram.length()))
+				break;
+			int index = start + currWordGram.length();
+			follows.add(myText[index]);
+			map.put(currWordGram, follows);
+		}
+		printHashMapInfo();
 	}
 	
+	
+//	To test the hashmap and print its contents
+	private void printHashMapInfo(){
+		System.out.println("Number of keys is map :"+map.keySet().size());
+		int maxFollows = 0;
+		for(WordGram key : map.keySet()){
+			int listSize = map.get(key).size();
+			if(listSize > maxFollows)
+				maxFollows = listSize;
+		}
+		System.out.println("Maximum number of keys following a key : "+maxFollows);
+//		System.out.println("Keys that have the largest arrayList : " );
+//		for(WordGram key : map.keySet()){
+//			int listSize = map.get(key).size();
+//			if(listSize == maxFollows){
+//				System.out.println(key+"\t"+map.get(key));
+//			}
+//		}
+//		System.out.println("Entire MAp : \n"+map);
+	}
+	  
 	public String getRandomText(int numWords){
 		StringBuilder sb = new StringBuilder();
 		int index = myRandom.nextInt(myText.length-myOrder);  // random word to start with
@@ -51,16 +101,8 @@ public class MarkovWord implements IMarkovModel{
 	}
 	
 	private ArrayList<String> getFollows(WordGram kGram) {
-	    ArrayList<String> follows = new ArrayList<String>();
-	    for(int i = 0; i<myText.length-1;){
-    		int start = indexOf(myText, kGram, i);
-	    	if(start == -1 || start == myText.length-1)
-	    		break;
-	    	String next = myText[start+kGram.length()];
-	 	    follows.add(next);
-	    	i = start+kGram.length();
-	    }
-	    return follows;
+	    
+	    return map.get(kGram);
     }
 	
 	private int indexOf(String[] words, WordGram target, int start){
