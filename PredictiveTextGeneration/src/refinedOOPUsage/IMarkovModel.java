@@ -1,11 +1,10 @@
-package refinedOOPUsage;
-
 /**
- * Write a description of interface IMarkovModel here.
+ * Interface for classes to interact
  * 
  * @author Prasandeep Singh
- * @version 06/01/2017
+ * @date created - 06/01/2017
  */
+package refinedOOPUsage;
 
 public interface IMarkovModel {
     public void setTraining(String text);

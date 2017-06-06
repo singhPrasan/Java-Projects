@@ -1,12 +1,11 @@
-package refinedOOPUsage;
-
 /**
- * Abstract class AbstractMarkovModel - write a description of the class here
+ * Base class for all Markov Model classes. All child class must implement the abstract method of this class
  * 
  * @author Prasandeep Singh
  * @version 06/01/2017
  */
 
+package refinedOOPUsage;
 import java.util.*;
 
 public abstract class AbstractMarkovModel implements IMarkovModel {
@@ -14,22 +13,18 @@ public abstract class AbstractMarkovModel implements IMarkovModel {
     protected Random myRandom;
     protected int seed;
     
+    //Constructor
     public AbstractMarkovModel() {
         myRandom = new Random();
     }
     
+    //Removes any whitespaces at the end/start of the text
     public void setTraining(String s) {
         myText = s.trim();
     }
     
-	/*
-	 * Generates random number based on the given seed input
-	 * 
-	 * The "seed" is a starting point for the sequence and the guarantee is that if you start 
-	 * from the same seed you will get the same sequence of numbers. This is very useful for example for debugging 
-	 * (when you are looking for an error in a program you need to be able to reproduce the problem and study it, 
-	 * a non-deterministic program would be much harder to debug because every run would be different).
-	 */
+	
+	//Generates random number based on the given seed input
 	public void setRandom(int seed){
 		myRandom = new Random(seed);
 	}
@@ -48,6 +43,7 @@ public abstract class AbstractMarkovModel implements IMarkovModel {
 		return follows;
 	}
 	
+	//Abstract function that is implemented in the child classes
     abstract public String getRandomText(int numChars);
 
 }

@@ -117,7 +117,7 @@ public class EfficientMarkovWord implements IMarkovModel{
 	        return map.get(kGram);
     	}
 	
-	//Returns index of target wordGram in the given array of words begining from a start position
+	//Returns index of target wordGram in the given array of words beginning from a start position
 	//It internally uses hashcode() function to index the correct wordGram key in the hashmap
 	private int indexOf(String[] words, WordGram target, int start){
 		int index = -1;

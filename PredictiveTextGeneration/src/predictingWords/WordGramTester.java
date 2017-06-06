@@ -1,7 +1,19 @@
+/*
+ * Tester class that tests code on a small input size
+ * 
+ * @author - Prasandeep Singh
+ * @Date created - 06/02/2017
+ * @Date modified - 06/05/2017
+ */
+
+
 package predictingWords;
 import java.util.*;
 
 public class WordGramTester {
+	
+	//Tests WordGram class on small inputs
+	//Checks whether tthe object has been created correctly or not
 	public void testWordGram(){
 		String source = "this is a test this is a test this is a test of words";
 		String[] words = source.split("\\s+");
@@ -12,6 +24,7 @@ public class WordGramTester {
 		}
 	}
 	
+	//Tests equals function of the WordGram class
 	public void testWordGramEquals(){
 		String source = "this is a test this is a test this is a test of words";
 		String[] words = source.split("\\s+");
@@ -31,6 +44,7 @@ public class WordGramTester {
 		}
 	}
 	
+	//Test Client
 	public static void main(String[] args) {
 		WordGramTester wgt = new WordGramTester();
 	//	wgt.testWordGram();

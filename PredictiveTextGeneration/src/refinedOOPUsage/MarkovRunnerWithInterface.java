@@ -1,15 +1,16 @@
-package refinedOOPUsage;
-
 /**
- * Write a description of class MarkovRunner here.
+ * Class which runs all markov models using the interface
  * 
  * @author Duke Software
  * @version 1.0
  */
-
+package refinedOOPUsage;
 import edu.duke.*; 
 
 public class MarkovRunnerWithInterface {
+	
+    //Executes Markov model specified by the object
+    //Uses a particular seed input provided by the user	
     public void runModel(IMarkovModel markov, String text, int size, int seed) {
         markov.setTraining(text);
         markov.setRandom(seed);
@@ -20,6 +21,8 @@ public class MarkovRunnerWithInterface {
 		}
     }
     
+    //Takes input as the file from which random text will be generated
+    //Calls runModel function for further execution
     public void runMarkov() {
         FileResource fr = new FileResource();
 		String st = fr.asString();
@@ -43,6 +46,7 @@ public class MarkovRunnerWithInterface {
 
     }
 
+    //Prints out the random text generated
 	private void printOut(String s){
 		String[] words = s.split("\\s+");
 		int psize = 0;
@@ -66,7 +70,7 @@ public class MarkovRunnerWithInterface {
 		mTwo.setTraining("yes-this-is-a-thin-pretty-pink-thistle");
 	}
 	
-	
+    //Compares execution time of normal MarkovModel class and Efficient Markov Model class	
 	public void compareMethods(){
 		MarkovModel mm = new MarkovModel(2);
 		EfficientMarkovModel emm = new EfficientMarkovModel(2);
@@ -83,6 +87,8 @@ public class MarkovRunnerWithInterface {
         System.out.println("Execution time in nano seconds :"+(end-start));
 		
 	}
+	
+	//Test Client
 	public static void main(String[] args) {
 		MarkovRunnerWithInterface mrwi = new MarkovRunnerWithInterface();
 		mrwi.runMarkov();

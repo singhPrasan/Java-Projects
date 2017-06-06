@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/WebDev/WorkingWithCSV/lib/commons-csv-1.4.jar"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/WebDev/WorkingWithCSV/lib/commons-csv-1.4-sources.jar"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/WebDev/WorkingWithCSV/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/WorkingWithCSV/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/WorkingWithCSV/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/WorkingWithCSV/lib/courserajava.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

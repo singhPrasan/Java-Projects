@@ -1,11 +1,14 @@
-package refinedOOPUsage;
+
 /*
  * Optimization of MarkovModel
  * Generates random text based on myText training text using Markov Order N Model
  * 
  * @author - Prasandeep Singh
+ * @date created - 06/01/2017
+ * 
  */
 
+package refinedOOPUsage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -14,20 +17,15 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
 	private int order;
 	private HashMap<String, ArrayList<String>> map ;
 	
+	//Constructor
 	public EfficientMarkovModel(int orderNum){
 		myRandom = new Random();
 		order = orderNum;
 		map = new HashMap<>();
 	}
 	
-	/*
-	 * Generates random number based on the given seed input
-	 * 
-	 * The "seed" is a starting point for the sequence and the guarantee is that if you start 
-	 * from the same seed you will get the same sequence of numbers. This is very useful for example for debugging 
-	 * (when you are looking for an error in a program you need to be able to reproduce the problem and study it, 
-	 * a non-deterministic program would be much harder to debug because every run would be different).
-	 */
+	
+	//Generates random number based on the given seed input
 	public void setRandom(int seed){
 		myRandom = new Random(seed);
 	}
@@ -105,12 +103,14 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
 		
 	}
 	
+	
+	//Returns a list of all characters that follow the given string of characters
 	protected ArrayList<String> getFollows(String key){
 		return map.get(key);
 	}
 	
+	//To print contents of the class object
 	public String toString(){
-		
 		return "EfficientMarkovModel class of order : "+order;
 	}
 

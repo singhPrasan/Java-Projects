@@ -1,6 +1,6 @@
 
 /**
- * Write a description of interface IMarkovModel here.
+ * Interface for classes to interact
  * 
  * @author Prasandeep Singh
  * @version 06/03/2017
