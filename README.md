@@ -9,6 +9,7 @@ This Repository contains projects built around Java with minimal use of HTML, CS
 2. org.apache.commons.csv.* - For manipulating excel sheets (.csv files)
 3. Eclipse IDE
 4. Languages : Java, JavaScipt, HTML, CSS
+5. LucidCharts : For designing class diagrams
 
 ---
 
