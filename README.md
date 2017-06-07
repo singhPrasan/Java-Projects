@@ -9,33 +9,33 @@ This Repository contains projects built around Java with minimal use of HTML, CS
 2. org.apache.commons.csv.* - For manipulating excel sheets (.csv files)
 3. Eclipse IDE
 4. Languages : Java, JavaScipt, HTML, CSS
-5. LucidCharts : For designing class diagrams
+5. LucidCharts : For designing UML diagrams
 
 ---
 
 ### PredicitiveTextGeneration
-Generation of random text from a given training set using Markov Models
+Generation of random text from a given training set using Markov Models <br />
 OOP approach
 
 ### EarthQuakes
 Searching, Sorting and Filtering data from a dataset about earthquakes in the past
 
 ### BasicCryptoAlgorithms
-Encryption and Decryption of text using Caesar Cipher
+Encryption and Decryption of text using Caesar Cipher<br />
 Encryption and Decryption of text using Vigenere Cipher
 
 ### WebServerLogs
 Reading and processing information from a web server log
 
 ### StoryGeneration
-Generates a random story from a given template.
+Generates a random story from a given template.<br />
 OOP approach used to organize brittle code
 
 ### NameInThePast
 Checks popuarity of a given name at any mentioned year in the past. 
 
 ### WorkingWithCSV
-Parse and perform analytics on CSV data.
+Parse and perform analytics on CSV data.<br />
 Open-source Apache Commons CSV package used.
 
 ### GeneFinder
