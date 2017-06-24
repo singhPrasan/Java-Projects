@@ -1,6 +1,9 @@
 
 /**
- * Write a description of class MarkovWordOne here.
+ * Generates random text based on Markov Models of order 2.
+ * This class can be ignored as MarkovModel class is implemented 
+ * which can work for any given order
+ * 
  * 
  * @author Prasandeep Singh
  * @version 06/03/2017

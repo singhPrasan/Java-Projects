@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="BasicCryptoAlgorithms/src"/>
+	<classpathentry kind="src" path="BatchProcessing/src"/>
+	<classpathentry kind="src" path="EarthQuakes/src"/>
+	<classpathentry kind="src" path="GeneFinder/src"/>
+	<classpathentry kind="src" path="NameInThePast/src"/>
+	<classpathentry kind="src" path="PredictiveTextGeneration/src"/>
+	<classpathentry kind="src" path="StoryGeneration/src"/>
+	<classpathentry kind="src" path="WebServerLogs/src"/>
+	<classpathentry kind="src" path="WorkingWithCSV/src"/>
+	<classpathentry kind="lib" path="BasicCryptoAlgorithms/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="BasicCryptoAlgorithms/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="BasicCryptoAlgorithms/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="BatchProcessing/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="EarthQuakes/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="EarthQuakes/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="EarthQuakes/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="GeneFinder/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="NameInThePast/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="NameInThePast/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="NameInThePast/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="PredictiveTextGeneration/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="PredictiveTextGeneration/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="PredictiveTextGeneration/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="StoryGeneration/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="StoryGeneration/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="StoryGeneration/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="WebServerLogs/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="WebServerLogs/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="WebServerLogs/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="WorkingWithCSV/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="WorkingWithCSV/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="WorkingWithCSV/lib/courserajava.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="WorkingWithCSV/bin"/>
+</classpath>
