@@ -1,4 +1,4 @@
-/*
+/**
  * Does analytics on movies based on number of ratings and raters who provided ratings
  * 
  * @author Prasandeep Singh
@@ -15,7 +15,7 @@ import edu.duke.*;
 public class FirstRatings {
 	
 	//Loads all the movies from the given CSV file into an arraylist of movie objects
-	private ArrayList<Movie> loadMovies(String fileName){
+	protected ArrayList<Movie> loadMovies(String fileName){
 		ArrayList<Movie> movieList = new ArrayList<>();
 		FileResource fr = new FileResource(fileName);
 		CSVParser parser = fr.getCSVParser();
@@ -29,7 +29,7 @@ public class FirstRatings {
 	
 	//Loads all the unique raters in an arraylist of Rater objects
 	//A particular rater can rate multiple movies, returns a list of all unique raters only
-	private ArrayList<Rater> loadRaters(String fileName){
+	protected ArrayList<Rater> loadRaters(String fileName){
 		ArrayList<Rater> raterList = new ArrayList<>();
 		HashMap<String, Rater> map = new HashMap<>();
 		FileResource fr = new FileResource(fileName);
@@ -179,7 +179,7 @@ public class FirstRatings {
 	}
 	
 	//Returns number of raters who rated a particular movie
-	private int numRatingsOfMovie(ArrayList<Rater> raterList, String movieId){
+	public int numRatingsOfMovie(ArrayList<Rater> raterList, String movieId){
 		int ratingCount = 0;
 		for(Rater currRater : raterList){
 			if(currRater.hasRating(movieId))
