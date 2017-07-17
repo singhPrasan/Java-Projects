@@ -29,7 +29,7 @@ public class MovieRunnerSimilarRatings {
 	
 	//Prints a list of all recommended movies for the specified user(raterId) 
 	private void printSimilarRatings(){
-		loadDatabase();
+		loadDataBase();
 		FourthRatings fr = new FourthRatings();
 		ArrayList<Rating> list = fr.getSimilarRatings("71", 20, 5);
  		System.out.println("RATING"+"\t"+"MOVIE TITLE");
@@ -41,7 +41,7 @@ public class MovieRunnerSimilarRatings {
 
 	//Prints a list of all recommended movies of a given list of for the specified user(raterId) 
 	private void printSimilarRatingsByGenre(){
-		loadDatabase();	
+		loadDataBase();	
 		GenreFilter genreFilter = new GenreFilter("Mystery");
 		FourthRatings fr = new FourthRatings();
 		ArrayList<Rating> list = fr.getSimilarRatingsByFilter("964", 20, 5, genreFilter);
@@ -56,7 +56,7 @@ public class MovieRunnerSimilarRatings {
 	
 	//Prints a list of all recommended movies directed by a given list of directors for the specified user(raterId) 
 	private void printSimilarRatingsByDirector(){
-			loadDatabase();
+		loadDataBase();
 		DirectorsFilter DirectorFilter = new DirectorsFilter(
 				"Clint Eastwood,J.J. Abrams,Alfred Hitchcock,Sydney Pollack,David Cronenberg,Oliver Stone,Mike Leigh");
 		
@@ -74,7 +74,7 @@ public class MovieRunnerSimilarRatings {
 	//Prints a list of all recommended movies that are of a given genre and duration for the specified user(raterId) 
 	private void printSimilarRatingsByGenreAndMinutes(){
 	
-			loadDatabase();
+		loadDataBase();
 		AllFilters af = new AllFilters();
 		af.addFilter(new MinutesFilter(80, 160));
 		af.addFilter(new GenreFilter("Drama"));
@@ -93,7 +93,7 @@ public class MovieRunnerSimilarRatings {
 	
 	//Prints a list of all recommended movies that released after a given year and are of specified duration for the specified user(raterId)  
 	private void printSimilarRatingsByYearAfterAndMinutes(){
-			loadDatabase();
+		loadDataBase();
 		AllFilters af = new AllFilters();
 		af.addFilter(new YearAfterFilter(1975));
 		af.addFilter(new MinutesFilter(70, 200));
