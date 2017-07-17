@@ -1,6 +1,6 @@
+// An immutable passive data object (PDO) to represent item data
 package recommendations;
 
-// An immutable passive data object (PDO) to represent item data
 public class Movie {
     private String id;
     private String title;

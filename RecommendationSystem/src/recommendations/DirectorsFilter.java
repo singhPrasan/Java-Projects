@@ -1,3 +1,11 @@
+/**
+ * A class that implements Filter interface and returns all movies that were directed by any one of the directors specified in the list
+ *
+ * @author   - Prasandeep Singh
+ * @created  - 07/01/2017
+ * @updated  - 07/17/2017
+ */
+
 package recommendations;
 
 public class DirectorsFilter implements Filter{
