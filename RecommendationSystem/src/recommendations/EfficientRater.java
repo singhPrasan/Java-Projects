@@ -1,4 +1,11 @@
-
+/**
+ * A class that contains all the information of one rater
+ * The information consists of raterID and his/her movies that hr/she rated along with the rating provided
+ * 
+ * @author  - Prasandeep Singh
+ * @created - 07/01/2017
+ * @updated - 07/18/2017
+ */
 package recommendations;
 
 import java.util.ArrayList;

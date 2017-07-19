@@ -1,4 +1,6 @@
 /**
+ * An interface used by plain and efficient rater
+ * Only Difference between plain and efficient rater is of efficieny
  * 
  * @author Prasandeep Singh
  * @created 06/25/2017

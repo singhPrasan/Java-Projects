@@ -45,7 +45,7 @@ public class MovieRunnerSimilarRatings {
 		GenreFilter genreFilter = new GenreFilter("Mystery");
 		FourthRatings fr = new FourthRatings();
 		ArrayList<Rating> list = fr.getSimilarRatingsByFilter("964", 20, 5, genreFilter);
-		System.out.println("Number of movies of the specified genre : "+list.size());
+		System.out.println("Number of top recommendations : "+list.size());
 		System.out.println("RATING"+"\t"+"MOVIE TITLE"+"\t\t"+"GENRE(s)");
 		for(Rating currRating : list){
 			System.out.println(currRating.getValue()+"\t"+MovieDatabase.getTitle(currRating.getItem())+"\t\t"+
@@ -62,7 +62,7 @@ public class MovieRunnerSimilarRatings {
 		
 		FourthRatings fr = new FourthRatings();
 		ArrayList<Rating> list = fr.getSimilarRatingsByFilter("120", 10, 2, DirectorFilter);
-		System.out.println("Number of movies of the specified genre : "+list.size());
+		System.out.println("Number of top recommendations : "+list.size());
 		System.out.println("RATING"+"\t"+"MOVIE TITLE"+"\t\t"+"DIRECTOR(s)");
 		for(Rating currRating : list){
 			System.out.println(currRating.getValue()+"\t"+MovieDatabase.getTitle(currRating.getItem())
@@ -81,7 +81,7 @@ public class MovieRunnerSimilarRatings {
 		
 		FourthRatings fr = new FourthRatings();
 		ArrayList<Rating> list = fr.getSimilarRatingsByFilter("168", 10, 3, af);
-		System.out.println("Number of movies of the specified genre : "+list.size());
+		System.out.println("Number of top recommendations: "+list.size());
 		System.out.println("RATING"+"\t"+"MINUTES"+"\t"+"MOVIE TITLE"+"\t\t"+"GENRE(s)");
 		for(Rating currRating : list){
 			System.out.println(currRating.getValue()+"\t"+MovieDatabase.getMinutes(currRating.getItem())
@@ -100,7 +100,7 @@ public class MovieRunnerSimilarRatings {
 		
 		FourthRatings fr = new FourthRatings();
 		ArrayList<Rating> list = fr.getSimilarRatingsByFilter("314", 10, 5, af);
-		System.out.println("Number of movies of the specified genre : "+list.size());
+		System.out.println("Number of top recommendations : "+list.size());
 		System.out.println("RATING"+"\t"+"YEAR"+"\t"+"MINUTES"+"\t"+"MOVIE TITLE");
 		for(Rating currRating : list){
 			System.out.println(currRating.getValue()+"\t"+MovieDatabase.getYear(currRating.getItem())+"\t"+
