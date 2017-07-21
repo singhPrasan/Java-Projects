@@ -9,8 +9,6 @@
  */
 
 
-package recommendations;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -110,20 +108,7 @@ public class MovieRunnerSimilarRatings {
 	}
 	
 	
-	//Prints a list of all recommended movies of a given list of for the specified user(raterId) based on the requuested country
-	private void printSimilarRatingsByCountry(){
-		loadDataBase();	
-		CountryFilter countryFilter = new CountryFilter("India");
-		FourthRatings fr = new FourthRatings();
-		ArrayList<Rating> list = fr.getSimilarRatingsByFilter("964", 20, 5, countryFilter);
-		System.out.println("Number of top recommendations : "+list.size());
-		System.out.println("RATING"+"\t"+"MOVIE TITLE"+"\t\t"+"Country");
-		for(Rating currRating : list){
-			System.out.println(currRating.getValue()+"\t"+MovieDatabase.getTitle(currRating.getItem())+"\t\t"+
-		MovieDatabase.getCountry(currRating.getItem()));
-		}
-		System.out.println("------------------------------------------------------------------");
-	}
+	
 	//Entry point for the recommendation engine
 	public static void main(String[] args) {
 		MovieRunnerSimilarRatings mrsr = new MovieRunnerSimilarRatings();
@@ -133,7 +118,7 @@ public class MovieRunnerSimilarRatings {
 	//	mrsr.printSimilarRatingsByGenre();
 	//	mrsr.printSimilarRatingsByDirector();
 	//	mrsr.printSimilarRatingsByGenreAndMinutes();
-	//	mrsr.printSimilarRatingsByYearAfterAndMinutes();
-		mrsr.printSimilarRatingsByCountry();
+		mrsr.printSimilarRatingsByYearAfterAndMinutes();
+		
 	}
 }

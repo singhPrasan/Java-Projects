@@ -6,7 +6,6 @@
  * @updated - 07/17/2017 
  */
 
-package recommendations;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -112,6 +111,7 @@ public class FourthRatings {
     //similarRatings: a list of all the raters that have similar taste of movies as that of the concerned user/rater 
     public int numRatingsOfMovie(ArrayList<Rating> similarRatings, String movieId, int numSimilarRaters){
     	int ratingCount = 0;
+    	numSimilarRaters = numSimilarRaters>=similarRatings.size() ? similarRatings.size() : numSimilarRaters;
         for(int i = 0; i<numSimilarRaters; i++){
     	        Rating currRating = similarRatings.get(i);
     		Rater currRater = RaterDatabase.getRater(currRating.getItem());
