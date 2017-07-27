@@ -5,6 +5,7 @@
  *  
  *  @author 	Prasandeep Singh
  *  @created	07/26/2017
+ *  @updated	07/27/2017
  */
 
 package mailRecruiters;
@@ -16,10 +17,13 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import edu.duke.FileResource;
+import recommendations.Filter;
+import recommendations.Movie;
 
 public class ContactsDataBase {
 	private static HashMap<Integer, Contact> allContacts;
 
+	//Initializes allContacts hashmap from the provided input file
     public static void initialize(String contactsFile) {
         if (allContacts == null) {
         	allContacts = new HashMap<Integer,Contact>();
@@ -27,14 +31,15 @@ public class ContactsDataBase {
         }
     }
 
+    //Initializes allContacts hashmap from the default file if no input file is provided
     private static void initialize() {
         if (allContacts == null) {
         	allContacts = new HashMap<Integer,Contact>();
-            loadAllContacts("data/ratedmoviesfull.csv");
+            loadAllContacts("data/Contacts-small.csv");
         }
     }	
 
-	
+	//Loads all contacts in the hashmap with key as Contact ID and value as the Contact Object
     private static void loadAllContacts(String filename) {
         ArrayList<Contact> list = loadContacts(filename);
         for (Contact c : list) {
@@ -49,10 +54,71 @@ public class ContactsDataBase {
 		FileResource fr = new FileResource(fileName);
 		CSVParser parser = fr.getCSVParser();
 		for(CSVRecord row : parser){
-				Contact currContact = new Contact(row.get("FirstName"), row.get("LastName"),  row.get("Companies"),
-						row.get("Title"), row.get("EmailAddress"));
+				Contact currContact = new Contact(row.get("FirstName"), row.get("LastName"),  row.get("Title"), row.get("Companies"),
+						, row.get("EmailAddress"));
 				contactsList.add(currContact);
 		}
 		return contactsList;
+	}
+	
+    public static boolean containsID(String id) {
+        initialize();
+        return allContacts.containsKey(id);
+    }
+
+    public static String getFirstName(String id) {
+        initialize();
+        return allContacts.get(id).getFirstName();
+    }
+
+    public static String getLastName(String id) {
+        initialize();
+        return allContacts.get(id).getLastName();
+    }
+
+    public static String getJobTitle(String id) {
+        initialize();
+        return allContacts.get(id).getJobTitle();
+    }
+
+    public static Contact getContactById(String id) {
+        initialize();
+        return allContacts.get(id);
+    }
+
+    public static String getCompany(String id) {
+        initialize();
+        return allContacts.get(id).getCompany();
+    }
+
+    public static String getEmail(String id) {
+        initialize();
+        return allContacts.get(id).getEmailId();
+    }
+
+    public static int size() {
+        return allContacts.size();
+    }
+
+//    public static ArrayList<String> filterBy(Filter f) {
+//        initialize();
+//        ArrayList<String> list = new ArrayList<String>();
+//        for(String id : allContacts.keySet()) {
+//            if (f.satisfies(id)) {
+//                list.add(id);
+//            }
+//        }
+//        return list;
+//    }
+	
+	//To test whether the hashmap gets loaded with correct data or not
+	private static void testContactsMap(){
+		initialize("Contacts-small.csv");
+		allContacts.forEach((k,v) -> System.out.println(k+"\t"+v));
+	}
+	
+	//Client program to run/test ContactsDataBase class
+	public static void main(String[] args) {
+		testContactsMap();
 	}
 }

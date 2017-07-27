@@ -54,7 +54,7 @@ public class Contact {
 
 	//Returns a concatenated string of all instances of the person object when it is printed
 	public String toString(){
-		String result = "Person [id="+uniqId+", Name="+firstName+" "+lastName+", Job Title="+jobTitle+", Email="+emailId+"]";
+		String result = "Person [id="+uniqId+", Name="+firstName+" "+lastName+", Company="+company+", Job Title="+jobTitle+", Email="+emailId+"]";
 		return result;
 	}
 	
