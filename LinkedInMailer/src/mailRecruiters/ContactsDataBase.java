@@ -17,16 +17,16 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import edu.duke.FileResource;
-import recommendations.Filter;
-import recommendations.Movie;
 
 public class ContactsDataBase {
 	private static HashMap<Integer, Contact> allContacts;
+	private static ArrayList<Contact> recruiters;
 
 	//Initializes allContacts hashmap from the provided input file
     public static void initialize(String contactsFile) {
         if (allContacts == null) {
         	allContacts = new HashMap<Integer,Contact>();
+        	recruiters = new ArrayList<Contact>();
             loadAllContacts("data/" + contactsFile);
         }
     }
@@ -35,7 +35,8 @@ public class ContactsDataBase {
     private static void initialize() {
         if (allContacts == null) {
         	allContacts = new HashMap<Integer,Contact>();
-            loadAllContacts("data/Contacts-small.csv");
+        	recruiters = new ArrayList<Contact>();
+            loadAllContacts("data/Contacts.csv");
         }
     }	
 
@@ -54,9 +55,13 @@ public class ContactsDataBase {
 		FileResource fr = new FileResource(fileName);
 		CSVParser parser = fr.getCSVParser();
 		for(CSVRecord row : parser){
-				Contact currContact = new Contact(row.get("FirstName"), row.get("LastName"),  row.get("Title"), row.get("Companies"),
-						, row.get("EmailAddress"));
-				contactsList.add(currContact);
+			
+			if(row.get("EmailAddress").equals("") || row.get("FirstName").equals("") || row.get("Title").equals("")) continue;
+			Contact currContact = new Contact(row.get("FirstName"), row.get("LastName"),  row.get("Title"), row.get("Companies"),
+						 row.get("EmailAddress"));
+			contactsList.add(currContact);
+			if(row.get("Title").contains("Recruiter") || row.get("Title").contains("Sourcer"))
+				recruiters.add(currContact);
 		}
 		return contactsList;
 	}
@@ -96,6 +101,10 @@ public class ContactsDataBase {
         return allContacts.get(id).getEmailId();
     }
 
+    public static ArrayList<Contact> getRecruiters(){
+    	 initialize();
+        return recruiters;
+    }
     public static int size() {
         return allContacts.size();
     }
@@ -113,7 +122,7 @@ public class ContactsDataBase {
 	
 	//To test whether the hashmap gets loaded with correct data or not
 	private static void testContactsMap(){
-		initialize("Contacts-small.csv");
+		initialize("Contacts.csv");
 		allContacts.forEach((k,v) -> System.out.println(k+"\t"+v));
 	}
 	
