@@ -26,7 +26,7 @@ public class EmailUtil {
 	 * @param subject
 	 * @param body
 	 */
-	public static void sendEmail(Session session, String toEmail, String subject, String body){
+	public static void sendEmail(Session session, String from, String toEmail, String subject, String body){
 		try
 	    {
 	      MimeMessage msg = new MimeMessage(session);
@@ -34,22 +34,15 @@ public class EmailUtil {
 	      msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 	      msg.addHeader("format", "flowed");
 	      msg.addHeader("Content-Transfer-Encoding", "8bit");
-
-	      msg.setFrom(new InternetAddress("prasan.ubhi@gmail.com", "prasan"));
-
-	      msg.setReplyTo(InternetAddress.parse("prasan.ubhi@gmail.com", false));
-
+	      msg.setFrom(new InternetAddress(from, "prasan"));
+	      msg.setReplyTo(InternetAddress.parse(from, false));
 	      msg.setSubject(subject, "UTF-8");
-
 	      msg.setText(body, "UTF-8");
-
 	      msg.setSentDate(new Date());
-
 	      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
 	      System.out.println("Message is ready");
     	  Transport.send(msg);  
-
-	      System.out.println("EMail Sent Successfully!!");
+	      System.out.println("Email Sent Successfully!!");
 	    }
 	    catch (Exception e) {
 	      e.printStackTrace();
@@ -71,29 +64,19 @@ public class EmailUtil {
 	         msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 		     msg.addHeader("format", "flowed");
 		     msg.addHeader("Content-Transfer-Encoding", "8bit");
-		      
 		     msg.setFrom(new InternetAddress("prasan.ubhi@gmail.com", "Prasan"));
-
 		     msg.setReplyTo(InternetAddress.parse("prasan.ubhi@gmail.com", false));
-
 		     msg.setSubject(subject, "UTF-8");
-
 		     msg.setSentDate(new Date());
-
 		     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-		      
 	         // Create the message body part
 	         BodyPart messageBodyPart = new MimeBodyPart();
-
 	         // Fill the message
 	         messageBodyPart.setText(body);
-	         
 	         // Create a multipart message for attachment
 	         Multipart multipart = new MimeMultipart();
-
 	         // Set text message part
 	         multipart.addBodyPart(messageBodyPart);
-
 	         // Second part is attachment
 	         messageBodyPart = new MimeBodyPart();
 	         String filename = "Resume.pdf";
@@ -101,10 +84,8 @@ public class EmailUtil {
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
 	         multipart.addBodyPart(messageBodyPart);
-
 	         // Send the complete message parts
 	         msg.setContent(multipart);
-
 	         // Send message
 	         Transport.send(msg);
 	         System.out.println("EMail Sent Successfully with attachment!!");

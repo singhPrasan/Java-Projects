@@ -36,7 +36,7 @@ public class ContactsDataBase {
         if (allContacts == null) {
         	allContacts = new HashMap<Integer,Contact>();
         	recruiters = new ArrayList<Contact>();
-            loadAllContacts("data/Contacts.csv");
+            loadAllContacts("data/Contacts-small.csv");
         }
     }	
 
@@ -60,7 +60,7 @@ public class ContactsDataBase {
 			Contact currContact = new Contact(row.get("FirstName"), row.get("LastName"),  row.get("Title"), row.get("Companies"),
 						 row.get("EmailAddress"));
 			contactsList.add(currContact);
-			if(row.get("Title").contains("Recruiter") || row.get("Title").contains("Sourcer"))
+			if(row.get("Title").toLowerCase().contains("recruiter") || row.get("Title").toLowerCase().contains("sourcer"))
 				recruiters.add(currContact);
 		}
 		return contactsList;
