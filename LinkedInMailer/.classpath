@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-8-oracle"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/Java-Projects/LinkedInMailer/lib/commons-csv-1.4.jar"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/Java-Projects/LinkedInMailer/lib/commons-csv-1.4-sources.jar"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/Java-Projects/LinkedInMailer/lib/courserajava.jar"/>
-	<classpathentry kind="lib" path="/home/prasan/workspace/Java-Projects/LinkedInMailer/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/LinkedInMailer/lib/commons-csv-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/LinkedInMailer/lib/commons-csv-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/LinkedInMailer/lib/courserajava.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ps23/Desktop/Java-Projects/LinkedInMailer/lib/javax.mail.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

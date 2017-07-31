@@ -54,16 +54,15 @@ public class SSLEmail {
 	private String getMailBody(Contact currRec){
 		String body = "Hello "+currRec.getFirstName()+",\n\nThanks for connecting with me on LinkedIn. I am"
 				+ " a graduate student at Indiana University, Bloomington pursuing Master's in Computer Science.\n"
-				+ "I’m reaching out to explore potential opportunities you have for someone with my background and "
+				+ "I am reaching out to explore potential opportunities you have for someone with my background and "
 				+ "qualifications. \nI have expertise in Software Development and am interested "
-				+ "in exploring positions where I can add value to "+currRec.getCompany()+".\n\n"
+				+ "in exploring positions where I can add value to "+currRec.getCompany()+" as a Software Developer.\n\n"
 				+ "It would be a sincere pleasure to hear back from you. You can reach me through email or "
 				+ "the phone number below.\n\n"
 				+ "Best Regards,\n"
 				+ "Prasandeep Singh\n"
-				+ "812-272-8705\n"
-				+ "<html><head></head><body><a href=\"https://www.linkedin.com/in/prasandeepsingh/\">LinkedIn</a>"
-				+ "</body></html>";
+				+ "<h3> 812-272-8705</h3>\n"
+				+ "<a href='https://www.linkedin.com/in/prasandeepsingh/'>LinkedIn</a>";
 		return body;
 	}
 	
