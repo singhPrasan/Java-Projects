@@ -1,3 +1,10 @@
+/**
+ * A class to store information about the sender mainly his/her emailID, password and the subject of E-mail
+ * 
+ * @author Prasandeep Singh
+ * @created - 07/31/2017
+ */
+
 package mailRecruiters;
 
 public class Sender {

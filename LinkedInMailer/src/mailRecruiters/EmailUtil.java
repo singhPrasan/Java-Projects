@@ -1,5 +1,14 @@
+/**
+ * Class to setup and send e-mail in the form of a simple mail, mail with attachment and mail with images
+ * API code from : http://www.journaldev.com/2532/javamail-example-send-mail-in-java-smtp
+ * 
+ * @author Prasandeep Singh
+ * @created - 07/26/2017
+ * @updated - 08/01/2017
+ */
+
 package mailRecruiters;
-//http://www.journaldev.com/2532/javamail-example-send-mail-in-java-smtp
+
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
@@ -50,7 +59,6 @@ public class EmailUtil {
 	}
 	
 	
-	
 	/**
 	 * Utility method to send email with attachment
 	 * @param session
@@ -58,17 +66,17 @@ public class EmailUtil {
 	 * @param subject
 	 * @param body
 	 */
-	public static void sendAttachmentEmail(Session session, String toEmail, String subject, String body){
+	public static void sendAttachmentEmail(Session session, String fromEmail, Contact currRecruiter, String subject, String body, String attachment){
 		try{
 	         MimeMessage msg = new MimeMessage(session);
 	         msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 		     msg.addHeader("format", "flowed");
 		     msg.addHeader("Content-Transfer-Encoding", "8bit");
-		     msg.setFrom(new InternetAddress("prasan.ubhi@gmail.com", "Prasan"));
-		     msg.setReplyTo(InternetAddress.parse("prasan.ubhi@gmail.com", false));
+		     msg.setFrom(new InternetAddress(fromEmail, "Prasandeep Singh"));
+		     msg.setReplyTo(InternetAddress.parse(fromEmail, true));
 		     msg.setSubject(subject, "UTF-8");
 		     msg.setSentDate(new Date());
-		     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+		     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(currRecruiter.getEmailId(), false));
 	         // Create the message body part
 	         BodyPart messageBodyPart = new MimeBodyPart();
 	         // Fill the message
@@ -79,8 +87,8 @@ public class EmailUtil {
 	         multipart.addBodyPart(messageBodyPart);
 	         // Second part is attachment
 	         messageBodyPart = new MimeBodyPart();
-	         String filename = "Resume.pdf";
-	         DataSource source = new FileDataSource(filename);
+	         String filename = attachment;
+	         DataSource source = new FileDataSource("data/"+filename);
 	         messageBodyPart.setDataHandler(new DataHandler(source));
 	         messageBodyPart.setFileName(filename);
 	         multipart.addBodyPart(messageBodyPart);
@@ -88,7 +96,7 @@ public class EmailUtil {
 	         msg.setContent(multipart);
 	         // Send message
 	         Transport.send(msg);
-	         System.out.println("EMail Sent Successfully with attachment!!");
+	         System.out.println("Mail sent to ["+currRecruiter.getFirstName()+" "+currRecruiter.getLastName()+"] --------- "+currRecruiter.getCompany());
 	      }catch (MessagingException e) {
 	         e.printStackTrace();
 	      } catch (UnsupportedEncodingException e) {
@@ -110,28 +118,18 @@ public class EmailUtil {
 	         msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 		     msg.addHeader("format", "flowed");
 		     msg.addHeader("Content-Transfer-Encoding", "8bit");
-		      
 		     msg.setFrom(new InternetAddress("no_reply@journaldev.com", "NoReply-JD"));
-
 		     msg.setReplyTo(InternetAddress.parse("no_reply@journaldev.com", false));
-
 		     msg.setSubject(subject, "UTF-8");
-
 		     msg.setSentDate(new Date());
-
 		     msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-		      
 	         // Create the message body part
 	         BodyPart messageBodyPart = new MimeBodyPart();
-
 	         messageBodyPart.setText(body);
-	         
 	         // Create a multipart message for attachment
 	         Multipart multipart = new MimeMultipart();
-
 	         // Set text message part
 	         multipart.addBodyPart(messageBodyPart);
-
 	         // Second part is image attachment
 	         messageBodyPart = new MimeBodyPart();
 	         String filename = "image.png";
@@ -141,16 +139,12 @@ public class EmailUtil {
 	         //Trick is to add the content-id header here
 	         messageBodyPart.setHeader("Content-ID", "image_id");
 	         multipart.addBodyPart(messageBodyPart);
-
 	         //third part for displaying image in the email body
 	         messageBodyPart = new MimeBodyPart();
-	         messageBodyPart.setContent("<h1>Attached Image</h1>" +
-	        		     "<img src='cid:image_id'>", "text/html");
+	         messageBodyPart.setContent("<h1>Attached Image</h1>" +"<img src='cid:image_id'>", "text/html");
 	         multipart.addBodyPart(messageBodyPart);
-	         
 	         //Set the multipart message to the email message
 	         msg.setContent(multipart);
-
 	         // Send message
 	         Transport.send(msg);
 	         System.out.println("EMail Sent Successfully with image!!");
@@ -160,6 +154,4 @@ public class EmailUtil {
 			 e.printStackTrace();
 		}
 	}
-	
-	
 }

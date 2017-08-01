@@ -5,17 +5,15 @@
  *  
  *  @author 	Prasandeep Singh
  *  @created	07/26/2017
- *  @updated	07/27/2017
+ *  @updated	08/01/2017
  */
 
 package mailRecruiters;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-
 import edu.duke.FileResource;
 
 public class ContactsDataBase {
@@ -48,7 +46,6 @@ public class ContactsDataBase {
         }
     }	
     
-    //MOve this method to The runner class later
 	//Loads all the movies from the given CSV file into an arraylist of movie objects
 	protected static ArrayList<Contact> loadContacts(String fileName){
 		ArrayList<Contact> contactsList = new ArrayList<>();
@@ -60,7 +57,8 @@ public class ContactsDataBase {
 			Contact currContact = new Contact(row.get("FirstName"), row.get("LastName"),  row.get("Title"), row.get("Companies"),
 						 row.get("EmailAddress"));
 			contactsList.add(currContact);
-			if(row.get("Title").toLowerCase().contains("recruiter") || row.get("Title").toLowerCase().contains("sourcer"))
+			if(row.get("Title").toLowerCase().contains("recruiter") || row.get("Title").toLowerCase().contains("sourcer")
+					|| row.get("Title").toLowerCase().contains("talent"))
 				recruiters.add(currContact);
 		}
 		return contactsList;
@@ -108,17 +106,6 @@ public class ContactsDataBase {
     public static int size() {
         return allContacts.size();
     }
-
-//    public static ArrayList<String> filterBy(Filter f) {
-//        initialize();
-//        ArrayList<String> list = new ArrayList<String>();
-//        for(String id : allContacts.keySet()) {
-//            if (f.satisfies(id)) {
-//                list.add(id);
-//            }
-//        }
-//        return list;
-//    }
 	
 	//To test whether the hashmap gets loaded with correct data or not
 	private static void testContactsMap(){
