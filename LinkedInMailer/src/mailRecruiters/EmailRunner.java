@@ -17,6 +17,7 @@
 package mailRecruiters;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.mail.Authenticator;
@@ -67,15 +68,30 @@ public class EmailRunner {
 	private void sendMails(Session session, String sender, String subject){
 		ArrayList<Contact> recruiterList = ContactsDataBase.getRecruiters();
 		int count = 0;
+		System.out.println("Number of recruiters in the list :"+recruiterList.size());
 		for(Contact currRecruiter : recruiterList){
 			String body = getMailBody(currRecruiter);
 		//	EmailUtil.sendEmail(session, sender, currRecruiter.getEmailId(), subject, body);	
 			EmailUtil.sendAttachmentEmail(session, sender, currRecruiter, subject, body, "Resume.pdf");
+			putDelay();
 			count++;
 		}
 		System.out.println("Mail sent to "+count+" recruiters");
 	}
 	
+	/*
+	 * Delays the sending of next mail by a randomly generated time (in seconds)
+	 */
+	private void putDelay(){
+		Random rand = new Random();
+		int sendMailAfter = rand.nextInt(5)+1;
+		System.out.println("Next mail will be sent in "+sendMailAfter+" seconds");
+		try {
+			Thread.sleep(1000*sendMailAfter);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Customize your mail body here. Can also pull recruiter data from the Contact database to tailor your mail according to the specific recruiter
